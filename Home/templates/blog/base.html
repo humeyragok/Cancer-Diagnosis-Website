@@ -1,0 +1,158 @@
+{% load static %}
+
+<!doctype html>
+<html>
+
+<head>
+
+    <title>{% if title %}
+        Djnango-blog {{title}}
+        {%else%}
+        Djnago-blog
+        {% endif %}
+
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'blog/main.css'%}">
+
+    {% block background_image %}
+    <style>
+        body {
+            background-image: url("{% static 'img/default-background.jpg' %}");
+            /* Default arka plan resmi */
+        }
+    </style>
+    {% endblock background_image %}
+
+    <style>
+        #sidebar {
+            min-height: 100vh;
+            background-color: #15c9c0;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #6d7fcc;
+        }
+
+        .list-unstyled {
+            padding: 0;
+        }
+
+        .list-unstyled a {
+            color: white;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .list-unstyled a:hover {
+            background: #575fcf;
+            text-decoration: none;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <main>
+        <div class="row container-fluid ">
+
+            <div class="col-md-2" id="sidebar">
+                <ul class="list-unstyled components">
+
+                    <li><a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#"></a></li>
+                            <li><a href="#">Home 2</a></li>
+                            <li><a href="#">Home 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Çıkış yap</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profil</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Giriş</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'register' %}">Kayıt Ol</a>
+                    </li>
+                    {% endif %}
+
+
+
+
+
+                </ul>
+
+
+
+
+            </div>
+            <div class="col-md-10">
+
+                {% if messages %}
+                {% for massage in messages %}
+                <div class="container">
+                    <div class="alert alert-{{massage.tags}} alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>{{massage}}</strong>
+                    </div>
+                </div>
+
+                {% endfor %}
+                {% endif %}
+                {% block content %}
+
+
+                {% endblock %}
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block background_image %}
+<style>
+    body {
+        background-image: url("{% static 'img/anasayfa.jpg' %}");
+        background-size: cover;
+        /* Resmi ekranın tamamını kaplayacak şekilde boyutlandır */
+        /* Resmi ortala */
+        background-repeat: no-repeat;
+        /* Resmi tekrar etme */
+
+    }
+</style>
+{% endblock background_image %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+
+        <form method="post" action="{% url 'test'  %}"  enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="col-md-12 mx-auto mt-5">
+                <h1 style="align-items: center;">Lütfen Mamografi Görüntünüzü Yükleyin</h1>
+
+                <label for="breast" class="btn  btn-block">
+                    Görüntü Seç
+                    <input type="file" name="image"  id="image" class="form-control">
+                </label>
+                <button type="submit" class="btn btn-primary">kaydet</button>
+            </div>
+    </div>
+    </form>
+
+</div>
+
+{% endblock content %}

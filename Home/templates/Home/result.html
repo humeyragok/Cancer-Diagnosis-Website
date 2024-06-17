@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<<<<<<< HEAD
+
+
+<div class="col-md-8 mx-auto mt-5">
+
+    {% if prediction < 0.5 %} <div class="row">
+        <div class="col-md-8">{{prediction}}</div>
+        <div class="col-md-4">kötü huylu</div>
+
+</div>
+
+{% else %}
+<div class="row">
+    <div class="col-md-8 ">{{prediction}}</div>
+    <div class="col-md-4">İyi huylu</div>
+
+</div>
+
+{% endif %}
+</div>
+
+
+
+
+<!-- {% if prediction < 0.5  %}
+    <h1>kötü huylu</h1>
+{% else  %}
+    <h1>iyi huylu</h1>
+{% endif  %} -->
+
+{% endblock content %}
+=======
+<style>
+    table {
+        width: 50%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .highlight {
+        background-color: #15c9c0;
+    }
+
+    .predicted-class {
+        color: #15c9c0;
+    }
+</style>
+
+<h1 style="text-align: center;">Tahmin Sonucu</h1>
+
+<h2 style="text-align: center;">Tahmin Edilen Sınıf: <span class="predicted-class">{{ predicted_class_label }}</span>
+</h2>
+<h2 style="text-align: center;">Olasılık: {{ predicted_confidence }}</h2>
+
+<h3 style="text-align: center;">Tüm Sınıf Olasılıkları:</h3>
+<table>
+    <tr>
+        <th>Sınıf Etiketi</th>
+        <th>Olasılık</th>
+    </tr>
+    {% for label, prediction in class_labels_and_predictions %}
+    <tr class="{% if label == predicted_class_label %}highlight{% endif %}">
+        <td>{{ label }}</td>
+        <td>{{ prediction }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+>>>>>>> 90db5ac (result page updated)
